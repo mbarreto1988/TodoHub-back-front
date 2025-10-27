@@ -25,6 +25,37 @@ export class TaskController {
   }
 
 
+  static async getUserTasks(req, res) {
+    try {
+      const userId = req.user?.userId;
+
+      if (!userId) {
+        return res.status(401).json({
+          success: false,
+          message: 'Unauthorized',
+        });
+      }
+
+      const tasks = await taskService.getTasksByUser(userId);
+
+      if (!tasks || tasks.length === 0) {
+        return res.status(204).send();
+      }
+
+      return res.status(200).json({
+        success: true,
+        data: tasks,
+      });
+    } catch (error) {
+      console.error('❌ Error in TaskController.getUserTasks:', error.message);
+      return res.status(500).json({
+        success: false,
+        message: 'Internal server error fetching tasks',
+      });
+    }
+  }
+
+
   static async getTaskById(req, res) {
     try {
       const { id } = req.params;

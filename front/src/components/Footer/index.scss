@@ -1,0 +1,38 @@
+@use '../../styles/variables' as v;
+
+.footer-container {
+  background-color: v.$color-primary;
+  color: v.$color-white;
+  text-align: center;
+  padding: v.$space-2 0;
+  margin-top: auto; // se queda abajo
+  width: 100%;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  position: relative;
+
+  &__text {
+    margin: 0;
+    font-weight: 500;
+
+    span {
+      color: lighten(v.$color-white, 10%);
+      font-weight: 400;
+    }
+  }
+
+  &__links {
+    margin-top: v.$space-1;
+
+    a {
+      color: v.$color-white;
+      margin: 0 v.$space-1;
+      text-decoration: none;
+      transition: color 0.2s;
+
+      &:hover {
+        color: darken(v.$color-white, 10%);
+      }
+    }
+  }
+}

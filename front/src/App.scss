@@ -1,4 +1,13 @@
-
+@use './pages/Home/index.scss' as home;
+@use './components/Navbar/index.scss' as navbar;
+@use './pages/Login/index.scss' as login;
+@use './pages/Register/index.scss' as register;
+@use './components/TaskEditForm/index.scss' as taskEditForm;
+@use './components/TaskForm/index.scss' as taskForm;
+@use './components/TaskItem/index.scss' as taskItem;
+@use './pages/Tasks/index.scss' as task;
+@use './components/Footer/index.scss' as footer;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
 
 * {
@@ -10,4 +19,27 @@
 html, body, #root {
   height: 100%;
   width: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden; // evita scroll global
+  font-family: 'Inter', sans-serif;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; // ocupa toda la pantalla
+}
+
+.main-content {
+  flex: 1;
+  overflow-y: auto; // solo si el contenido excede
+  background-color: #f9f9f9;
+  min-height: 0;
+  padding: 1rem;
+
+  // evita que haya espacio fantasma si el contenido es corto
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }

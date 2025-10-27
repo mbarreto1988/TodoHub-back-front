@@ -18,6 +18,36 @@ export class TaskRepository {
   }
 
 
+    async getAllTasksByUserId(userId) {
+    try {
+      const pool = await getPool();
+      const result = await pool
+        .request()
+        .input('UserId', userId)
+        .query(`
+          SELECT 
+            Id,
+            UserId,
+            Title,
+            Description,
+            IsCompleted,
+            CreatedAt,
+            UpdatedAt
+          FROM dbo.Tasks
+          WHERE UserId = @UserId
+          ORDER BY CreatedAt DESC;
+        `);
+
+      return result.recordset;
+    } catch (error) {
+      console.error('❌ Error in TaskRepository.getAllTasksByUserId:', error.message);
+      throw new Error('Error fetching tasks for user');
+    }
+  }
+
+  
+
+
   async getTaskById(id, userId) {
     try {
       const pool = await getPool();

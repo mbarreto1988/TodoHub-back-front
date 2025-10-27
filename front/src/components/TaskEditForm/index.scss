@@ -1,0 +1,90 @@
+@use '../../styles/variables' as v;
+@use 'sass:color';
+
+.tasks-edit-container {
+  display: flex;
+  flex-direction: column;
+  gap: v.$space-2;
+  background-color: v.$color-white;
+  border-radius: v.$radius;
+  padding: v.$space-3;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.2s ease-in-out;
+
+  input {
+    padding: 0.6rem 0.8rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: v.$radius;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+
+    &:focus {
+      border-color: v.$color-primary;
+    }
+  }
+
+  label {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.95rem;
+    color: v.$color-text;
+    cursor: pointer;
+
+    input[type='checkbox'] {
+      transform: scale(1.1);
+      cursor: pointer;
+      accent-color: v.$color-primary;
+    }
+  }
+
+  &__edit-buttons {
+    display: flex;
+    gap: v.$space-2;
+    margin-top: v.$space-1;
+
+    button {
+      flex: 1;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: v.$radius;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.1s ease;
+
+      &:hover {
+        transform: translateY(-1px);
+      }
+
+      &:first-child {
+        background-color: v.$color-primary;
+        color: v.$color-white;
+
+        &:hover {
+          background-color: color.scale(v.$color-primary, $lightness: -10%);
+        }
+      }
+
+      &:last-child {
+        background-color: v.$color-danger;
+        color: v.$color-white;
+
+        &:hover {
+          background-color: color.scale(v.$color-danger, $lightness: -10%);
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

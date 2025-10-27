@@ -24,6 +24,26 @@ export class TaskService {
     }
   }
 
+  
+  async getTasksByUser(userId) {
+    try {
+      const tasks = await this.taskRepository.getAllTasksByUserId(userId);
+
+      return tasks.map(task => ({
+        id: task.Id,
+        userId: task.UserId,
+        title: task.Title,
+        description: task.Description,
+        isCompleted: Boolean(task.IsCompleted),
+        createdAt: task.CreatedAt,
+        updatedAt: task.UpdatedAt,
+      }));
+    } catch (error) {
+      console.error('❌ Error in TaskService.getTasksByUser:', error.message);
+      throw new Error('Error processing user tasks');
+    }
+  }
+
 
   async getTaskById(taskId, userId) {
     try {

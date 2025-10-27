@@ -3,7 +3,8 @@ import { TaskController } from "../../controllers/tasks/tasks.controller.js";
 
 const router = Router();
 
-router.get('/', TaskController.getAllTasks);
+router.get('/', TaskController.getUserTasks);
+router.get('/all', TaskController.getAllTasks);
 router.get('/:id', TaskController.getTaskById);
 router.post('/', TaskController.createTask);
 router.put('/:id', TaskController.updateTask);

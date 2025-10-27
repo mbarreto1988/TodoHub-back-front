@@ -1,29 +1,36 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import './App.scss';
+import Navbar from "./components/Navbar";
+import { Home } from "./pages/Home";
+import Login from "./pages/Login";
+import Register from "./pages/Register";
+import Tasks from "./pages/Tasks";
+import TaskEditForm from "./components/TaskEditForm";
+import ProtectedRoute from "./components/ProtectedRoute";
+import { Footer } from "./components/Footer";
 
-import './App.scss'
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-
-function App() {
-  const [saludo, setSaludo] = useState('')
-
-  useEffect(()=>{
-    const apiss = async()=>{
-      try {
-        const response = await axios.get('http://localhost:3001')
-        setSaludo(response.data)
-      } catch (error) {
-        console.error(error)
-      }
-    }
-    apiss()
-  }, [])
-
-
+export default function App() {
   return (
-    <>
-      <h1>Hola mundo = {saludo}</h1>
-    </>
-  )
-} 
-
-export default App
+    <BrowserRouter>
+      <div className="app-container">
+        <Navbar />
+        <main className="main-content">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route
+              path="/tasks"
+              element={
+                <ProtectedRoute>
+                  <Tasks EditComponent={TaskEditForm} />
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </BrowserRouter>
+  );
+}

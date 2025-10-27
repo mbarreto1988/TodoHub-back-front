@@ -1,0 +1,45 @@
+@use '../../styles/variables' as v;
+
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: v.$space-3;
+  background-color: v.$color-bg;
+
+  &__title {
+    font-size: 2rem;
+    color: v.$color-primary;
+    margin-bottom: v.$space-3;
+    text-align: center;
+  }
+
+  &__list {
+    list-style: none;
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 0;
+
+    li {
+      background-color: v.$color-white;
+      border-radius: v.$radius;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      margin-bottom: v.$space-2;
+      padding: v.$space-2;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+
+      &:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+      }
+    }
+  }
+
+  &__loading {
+    text-align: center;
+    color: v.$color-text;
+    font-size: 1.1rem;
+    margin-top: v.$space-3;
+  }
+}
