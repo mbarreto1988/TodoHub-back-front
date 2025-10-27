@@ -21,24 +21,23 @@ html, body, #root {
   width: 100%;
   margin: 0;
   padding: 0;
-  overflow: hidden; // evita scroll global
+  overflow: hidden;
   font-family: 'Inter', sans-serif;
 }
 
 .app-container {
   display: flex;
   flex-direction: column;
-  height: 100vh; // ocupa toda la pantalla
+  height: 100vh;
 }
 
 .main-content {
   flex: 1;
-  overflow-y: auto; // solo si el contenido excede
+  overflow-y: auto;
   background-color: #f9f9f9;
   min-height: 0;
   padding: 1rem;
 
-  // evita que haya espacio fantasma si el contenido es corto
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

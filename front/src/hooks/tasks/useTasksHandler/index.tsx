@@ -15,7 +15,6 @@ export function useTasksHandler() {
   const [loading, setLoading] = useState(false);
   const [editingId, setEditingId] = useState<number | null>(null);
 
-  // 🔹 Fetch inicial
   useEffect(() => {
     if (!token) return;
     setLoading(true);
@@ -25,20 +24,17 @@ export function useTasksHandler() {
       .finally(() => setLoading(false));
   }, [token]);
 
-  // 🔹 Crear tarea
   const addTask = async (title: string, description: string) => {
     if (!title.trim()) return;
     const created = await tasksApi.create(token!, { title, description });
     setTasks((prev) => [...prev, created.data]);
   };
 
-  // 🔹 Eliminar tarea
   const deleteTask = async (id: number) => {
     await tasksApi.delete(token!, id);
     setTasks((prev) => prev.filter((t) => t.id !== id));
   };
 
-  // 🔹 Guardar edición
   const saveTask = (updatedTask: Task) => {
     setTasks((prev) =>
       prev.map((t) => (t.id === updatedTask.id ? updatedTask : t))
